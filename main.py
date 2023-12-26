@@ -13,7 +13,7 @@ class ElectronicMusic(wx.App):
         self.env.load("electronicMusic.clp")
 
         # Create the GUI
-        self.dialog = wx.Dialog(None, -1, "Auto Demo", size=(1400, 300))
+        self.dialog = wx.Dialog(None, -1, "Electronic Music", size=(1400, 300))
 
         sizer = wx.BoxSizer(wx.VERTICAL)
 
@@ -117,14 +117,17 @@ class ElectronicMusic(wx.App):
         sizer = wx.BoxSizer(wx.HORIZONTAL)
 
         self.answers._buttons = []
+
         for answer in valid_answers:
-            r = wx.RadioButton(self.answers, -1, answer)
+            # Replace underscores with spaces in the answer
+            answer_with_spaces = answer.replace('_', ' ')
+
+            r = wx.RadioButton(self.answers, -1, answer_with_spaces)
             if answer == selected:
                 r.SetValue(True)
 
             sizer.Add(r, flag=wx.ALL, border=5)
             self.answers._buttons.append(r)
-
         self.answers.SetSizer(sizer)
         self.answers.Fit()
 
